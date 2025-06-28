@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Exam Score Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Exam Score Predictor</h1>
+        <form action="/predict" method="post">
+            <div class="form-grid">
+
+                <label>Age</label>
+                <input type="number" name="age" min="0" step="1" required>
+
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                    <option value="0.5">Other</option>
+                </select>
+
+                <label>Study Hours per Day</label>
+                <input type="number" name="study_hours_per_day" step="0.1" min="0" max="24" required>
+
+                <label>Social Media Hours per Day</label>
+                <input type="number" name="social_media_hours" step="0.1" min="0" max="24" required>
+
+                <label>Netflix Hours per Day</label>
+                <input type="number" name="netflix_hours" step="0.1" min="0" max="24" required>
+
+                <label>Part-Time Job</label>
+                <div>
+                    <input type="radio" id="job_yes" name="part_time_job" value="1" required>
+                    <label for="job_yes">Yes</label>
+                    <input type="radio" id="job_no" name="part_time_job" value="0">
+                    <label for="job_no">No</label>
+                </div>
+
+                <label>Attendance Percentage</label>
+                <input type="number" name="attendance_percentage" min="0" max="100" step="0.1" required>
+
+                <label>Sleep Hours</label>
+                <input type="number" name="sleep_hours" step="0.1" min="0" max="24" required>
+
+                <label>Diet Quality</label>
+                <select name="diet_quality" required>
+                    <option value="0">Poor</option>
+                    <option value="1">Fair</option>
+                    <option value="2">Good</option>
+                </select>
+
+                <label>Exercise Frequency (days/week)</label>
+                <select name="exercise_frequency" required>
+                    {% for i in range(0, 8) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Parental Education Level</label>
+                <select name="parental_education_level" required>
+                    <option value="0">None</option>
+                    <option value="1">High School</option>
+                    <option value="2">Bachelor</option>
+                    <option value="3">Master</option>
+                </select>
+
+                <label>Internet Quality</label>
+                <select name="internet_quality" required>
+                    <option value="0">Poor</option>
+                    <option value="1">Average</option>
+                    <option value="2">Good</option>
+                </select>
+
+                <label>Mental Health Rating</label>
+                <select name="mental_health_rating" required>
+                    {% for i in range(0, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Extracurricular Participation</label>
+                <div>
+                    <input type="radio" id="extra_yes" name="extracurricular_participation" value="1" required>
+                    <label for="extra_yes">Yes</label>
+                    <input type="radio" id="extra_no" name="extracurricular_participation" value="0">
+                    <label for="extra_no">No</label>
+                </div>
+
+            </div>
+
+            <button type="submit">Predict Exam Score</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">
+                🧾 Predicted Exam Score: <strong>{{ prediction }}</strong>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
