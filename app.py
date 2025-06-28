@@ -17,6 +17,7 @@ def predict():
         # Extract and convert input values from form
         features = [
             float(request.form['age']),
+            float(request.form['gender']),
             float(request.form['study_hours_per_day']),
             float(request.form['social_media_hours']),
             float(request.form['netflix_hours']),
