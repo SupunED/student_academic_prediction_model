@@ -55,3 +55,15 @@ features = [
     'mental_health_rating',
     'extracurricular_participation'
 ]
+```
+
+## 🚀 Getting Started
+###  1. Clone the Repository
+```bash
+git clone https://github.com/SupunED/student_academic_prediction_model.git
+cd student_academic_prediction_model
+```
+###  2. Run the Flask App
+```bash
+python app.py
+```
